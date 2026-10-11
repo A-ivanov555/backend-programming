@@ -1,1 +1,8 @@
-# backend-programming
+# Backend Programming
+
+ФИО: Иванов Андрей Александрович  
+Группа: Б9125-02.03.01сцт
+
+## Выполненные задания
+
+- Homework 0
