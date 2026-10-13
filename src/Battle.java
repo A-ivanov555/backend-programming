@@ -35,25 +35,44 @@ public class Battle {
         }
         if (attacker.getSpecialUses() > 0 && random.nextBoolean()){
             attacker.useSpecialAbility(target);
-            System.out.println(attacker.getName()+" использует особую способность на  " +target.getName());
-            System.out.println("Осталось здоровья: "+target.getHealth());
+            System.out.println(attacker.getName()+" атакует используя особую способность на  " +target.getName());
+            System.out.println("Осталось здоровья у "+target.getName()+": "+target.getHealth());
+
         }else {
             attacker.attack(target);
             System.out.println(attacker.getName()+" атакует " +target.getName());
-            System.out.println("Осталось здоровья: "+target.getHealth());
+            System.out.println("Осталось здоровья у "+target.getName()+": "+target.getHealth());
+
 
         }
 
 
 
     }
+    private void printTeam(Team team) {
+        System.out.println("Команда " + team.getName() + ":");
+
+        for (Character character : team.getMembers()) {
+            System.out.println(
+                    character.getClass().getSimpleName()
+                            + " "
+                            + character.getName()
+            );
+        }
+
+        System.out.println();
+    }
     public void startBattle() {
+        printTeam(team1);
+        printTeam(team2);
         int round = 1;
         int maxRounds = 20;
         while (round <= maxRounds
                 && team1.hasAliveCharacters()
                 && team2.hasAliveCharacters()) {
-            System.out.println("Раунд " + round);
+            System.out.println();
+            System.out.println("Раунд " + round+":");
+            System.out.println();
             round++;
             for (Character character : team1.getMembers()) {
                 performTurn(character, team2);
@@ -74,12 +93,16 @@ public class Battle {
             }
 
         }
+        System.out.println();
         if (!team1.hasAliveCharacters()) {
             System.out.println("Победила команда " + team2.getName());
+
         } else if (!team2.hasAliveCharacters()) {
             System.out.println("Победила команда " + team1.getName());
+
         } else {
             System.out.println("Бой завершён без победителя");
+
         }
     }
 
